@@ -1,0 +1,2 @@
+LINES = 10
+COLUMNS = 20

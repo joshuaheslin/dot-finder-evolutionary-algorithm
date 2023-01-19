@@ -1,52 +1,11 @@
 import curses
 from curses import KEY_UP, KEY_DOWN, KEY_RIGHT, KEY_LEFT
 
-
-LINES = 10
-COLUMNS = 20
-
-
-class Star:
-    """ Star object you can move around in the window (x=down,up|lines, y=left,right|columns)"""
-
-    def __init__(self, x, y, window):
-        self.x = x
-        self.y = y
-        self.window = window
-
-    def render(self):
-        self.window.addch(self.x, self.y, curses.ACS_DIAMOND)
-
-    def move_left(self):
-        if self.y - 1 <= 0:
-            return
-        self.window.addch(self.x, self.y, ' ')
-        self.y = self.y - 1
-        self.window.addch(self.x, self.y, curses.ACS_DIAMOND)
-
-    def move_right(self):
-        if self.y + 2 >= COLUMNS:
-            return
-        self.window.addch(self.x, self.y, ' ')
-        self.y = self.y + 1
-        self.window.addch(self.x, self.y, curses.ACS_DIAMOND)
-
-    def move_up(self):
-        if self.x - 1 <= 0:
-            return
-        self.window.addch(self.x, self.y, ' ')
-        self.x = self.x - 1
-        self.window.addch(self.x, self.y, curses.ACS_DIAMOND)
-
-    def move_down(self):
-        if self.x + 2 >= LINES:
-            return
-        self.window.addch(self.x, self.y, ' ')
-        self.x = self.x + 1
-        self.window.addch(self.x, self.y, curses.ACS_DIAMOND)
+from star import Star
+from config import COLUMNS, LINES
 
 
-def main2():
+def main():
     screen = curses.initscr()
     h, w = screen.getmaxyx()
     window = curses.newwin(LINES, COLUMNS, 0, 0)
@@ -80,4 +39,4 @@ def main2():
 
 
 if __name__ == '__main__':
-    main2()
+    main()
