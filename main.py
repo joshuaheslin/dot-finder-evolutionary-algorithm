@@ -11,6 +11,15 @@ inputs = [260, 258, 261, 259]
 
 
 def run_game(instructions, manual_mode=False):
+    """
+        Takes set of instructions and moves the dot around the window
+
+        instructions:
+            list of keyboard inputs
+
+        manual_mode:
+            instructions will be ignored and you can move the dot with your arrow keys
+    """
     window.keypad(1)
     curses.curs_set(0)
 
@@ -51,6 +60,9 @@ def run_game(instructions, manual_mode=False):
 
 
 def main():
+    """
+        Runs the evolutionary algorithm. Program continues until the best_score is found and exits
+    """
     best_score = 1000
     best_instructions = [random.choice(inputs) for _ in range(20)]
     current_game_score = 1000
