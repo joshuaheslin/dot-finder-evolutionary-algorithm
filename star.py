@@ -28,7 +28,7 @@ class Star:
         self.window.addch(self.x, self.y, curses.ACS_DIAMOND)
 
     def move_up(self):
-        if self.x - 1 <= 0:
+        if self.x - 1 <= 3:
             return
         self.window.addch(self.x, self.y, ' ')
         self.x -= 1
