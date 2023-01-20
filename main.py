@@ -56,14 +56,14 @@ def main():
     current_game_score = 1000
     generation_counter = 0
 
-    while best_score >= 2:
+    while best_score > 1:
         results = []
 
         for _ in range(5):
+            best_instructions[4] = random.choice(inputs)
+            best_instructions[8] = random.choice(inputs)
             best_instructions[12] = random.choice(inputs)
             best_instructions[15] = random.choice(inputs)
-            best_instructions[17] = random.choice(inputs)
-            best_instructions[18] = random.choice(inputs)
             best_instructions[19] = random.choice(inputs)
 
             instructions = best_instructions.copy()
@@ -77,7 +77,7 @@ def main():
         best_results = sorted(results, key=lambda tup: tup[0])
 
         current_best_score = best_results[0][0]
-        if current_best_score < best_score:
+        if current_best_score <= best_score:
             best_score = current_best_score
             best_instructions = best_results[0][1]
         generation_counter += 1
@@ -96,6 +96,6 @@ if __name__ == '__main__':
     optimised_result = main()
     print(optimised_result)
 
-    # instructions = [261, 258, 258, 258, 258, 260, 258, 260, 260,
-    #                 260, 259, 259, 259, 261, 258, 259, 260, 260, 260, 259]
+    # instructions = [260, 260, 259, 259, 258, 259, 259, 261, 258,
+    #                 260, 258, 260, 258, 258, 259, 260, 259, 260, 258, 259]
     # run_game(instructions, manual_mode=False)
