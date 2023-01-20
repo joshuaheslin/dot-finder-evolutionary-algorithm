@@ -2,7 +2,7 @@
 
 ## Description
 
-A small python console game that demostrates the usage of evoltionary algorithms. The dot needs to find the target co-ordinates after many generation iterations.
+A small python console game that demostrates the usage of evolution algorithms. The dot needs to find the target co-ordinates after many generation iterations. It's just an example project to illustrate the concepts.
 
 ## Run locally
 
