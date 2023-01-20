@@ -1,16 +1,13 @@
 import curses
-import sys
 import random
-import time
 from curses import KEY_UP, KEY_DOWN, KEY_RIGHT, KEY_LEFT
 
 from star import Star
 from config import COLUMNS, LINES
 
+target = [5, 5]
 inputs = [260, 258, 261, 259]
 # inputs = [KEY_LEFT, KEY_DOWN, KEY_RIGHT, KEY_UP, -1]
-
-target = [5, 5]
 
 
 def run_game(instructions, manual_mode=False):
@@ -55,14 +52,14 @@ def run_game(instructions, manual_mode=False):
 
 def main():
     best_score = 1000
-    game_score = 1000
     best_instructions = [random.choice(inputs) for _ in range(20)]
-    counter = 0
+    current_game_score = 1000
+    generation_counter = 0
 
     while best_score >= 2:
         results = []
 
-        for i in range(5):
+        for _ in range(5):
             best_instructions[12] = random.choice(inputs)
             best_instructions[15] = random.choice(inputs)
             best_instructions[17] = random.choice(inputs)
@@ -73,9 +70,9 @@ def main():
             saved_instructions = instructions.copy()
 
             game_star = run_game(instructions)
-            game_score = game_star.get_score(target)
+            current_game_score = game_star.get_score(target)
 
-            results.append((game_score, saved_instructions))
+            results.append((current_game_score, saved_instructions))
 
         best_results = sorted(results, key=lambda tup: tup[0])
 
@@ -83,10 +80,10 @@ def main():
         if current_best_score < best_score:
             best_score = current_best_score
             best_instructions = best_results[0][1]
-        counter += 1
+        generation_counter += 1
 
         window.addstr(1, 1, f"Best: {best_score}")
-        window.addstr(2, 1, f"Gen: {counter}")
+        window.addstr(2, 1, f"Gen: {generation_counter}")
 
     return [best_score, best_instructions]
 
